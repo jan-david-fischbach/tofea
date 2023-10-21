@@ -56,7 +56,7 @@ class FEA2D:
         dofmap = np.reshape(self.e2sdofmap.T, (-1, *self.out_shape))
         c = anp.einsum("ixy,ij,jxy->xy", u[dofmap], self.element, u[dofmap])
 
-        return anp.sum(c)
+        return c, u[dofmap] # anp.sum(c)
 
 
 class FEA2D_K(FEA2D):
